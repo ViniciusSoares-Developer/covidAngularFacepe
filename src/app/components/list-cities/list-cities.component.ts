@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICovidCities } from 'src/app/interfaces/ICovidCities';
+import { ICovidCities } from 'src/app/interfaces/iCovidCities';
 import { CovidCitiesService } from 'src/app/services/covidCities/covid-cities.service';
 
 @Component({
