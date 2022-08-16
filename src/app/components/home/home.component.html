@@ -1,3 +1,11 @@
+<ng-template [ngIf]="!ChargeMap">
+    Load
+</ng-template>
 <ng-template [ngIf]="ChargeMap">
-    <app-map [dataCovid]="dataCovid"></app-map>
+    <select [(ngModel)]="selectDate" (change)="filterDateCovid(selectDate!)">
+        <option *ngFor="let data of datas" [value]="data">{{data}}</option>
+    </select>
+    <app-map [dataCovid]="dataCovidPerDate"></app-map>
+    <app-list-states [dataCovid]="dataCovidPerDate"></app-list-states>
+    <app-list-cities></app-list-cities>
 </ng-template>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
-import { ICovid } from 'src/app/interfaces/icovid';
+import * as $ from 'jquery';
+import { ICovidState } from 'src/app/interfaces/iCovidState';
 // @ts-ignore
 import * as brazilJson from 'src/assets/brazil-states.json';
 
@@ -9,11 +10,13 @@ import * as brazilJson from 'src/assets/brazil-states.json';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
-  @Input() dataCovid: Array<ICovid> = [];
+export class MapComponent implements OnInit{
+  @Input() dataCovid: Array<ICovidState> = [];
 
   width: number = 100;
   height: number = 100;
+
+  private chart: echarts.EChartsType | undefined;
 
   public dataChart = [
     {name: 'AC', value: 0},
@@ -45,38 +48,42 @@ export class MapComponent implements OnInit {
     {name: 'TO', value: 0},
   ];
 
-  constructor() {}
-
   ngOnInit(): void {
+    console.log(this.dataCovid);
     this.updateDataChart();
+    setInterval(()=>this.updateDataChart(), 10000)
+    $(window).on('resize', ()=>{
+      if(this.chart != null && this.chart != undefined){
+        this.chart.resize();
+      }
+    })
   }
 
   //configurações do mapa
   private chartMap() {
     var chartDom = document.getElementById('mapChart')!;
     echarts.dispose(chartDom);
-    var myChart = echarts.init(chartDom);
+    this.chart = echarts.init(chartDom);
     var option: echarts.EChartsOption;
 
     echarts.registerMap('BR', brazilJson);
     option = {
+      title: {
+        text: 'Covid Brasil(Cases)',
+        subtext: 'Data from WCota/covid19br',
+        sublink: 'https://github.com/wcota/covid19br',
+        left: 'left',
+        bottom: 'top',
+      },
       visualMap: {
         left: 'right',
         min: 0,
-        max: 200000,
+        max: 6000000,
         inRange: {
           color: [
-            '#313695',
-            '#4575b4',
-            '#74add1',
-            '#abd9e9',
-            '#e0f3f8',
-            '#ffffbf',
-            '#fee090',
-            '#fdae61',
-            '#f46d43',
-            '#d73027',
-            '#a50026',
+            'orange',
+            'red',
+            'black'
           ],
         },
         text: ['Alto', 'Baixo'],
@@ -89,10 +96,10 @@ export class MapComponent implements OnInit {
         left: 'left',
         top: 'top',
         feature: {
-          dataView: { readOnly: true },
           restore: {},
           saveAsImage: {},
         },
+        
       },
       series: [
         {
@@ -110,7 +117,7 @@ export class MapComponent implements OnInit {
               borderColor: 'black',
               borderType: 'solid',
               color: 'black',
-              padding: 1
+              padding: 1,
             },
           },
           data: this.dataChart
@@ -119,39 +126,20 @@ export class MapComponent implements OnInit {
 
     };
 
-    myChart.setOption(option);
+    this.chart.setOption(option);
   }
 
   //atualização dos dados utilizados
   public updateDataChart(): void {
-    this.dataChart[0].value = this.dataCovid[this.dataCovid.length - 29].deaths; // AC
-    this.dataChart[1].value = this.dataCovid[this.dataCovid.length - 28].deaths; // AL
-    this.dataChart[3].value = this.dataCovid[this.dataCovid.length - 27].deaths; // AM
-    this.dataChart[2].value = this.dataCovid[this.dataCovid.length - 26].deaths; // AP
-    this.dataChart[4].value = this.dataCovid[this.dataCovid.length - 25].deaths; // BA
-    this.dataChart[5].value = this.dataCovid[this.dataCovid.length - 24].deaths; // CE
-    this.dataChart[6].value = this.dataCovid[this.dataCovid.length - 23].deaths; // DF
-    this.dataChart[7].value = this.dataCovid[this.dataCovid.length - 22].deaths; // ES
-    this.dataChart[8].value = this.dataCovid[this.dataCovid.length - 21].deaths; // GO
-    this.dataChart[9].value = this.dataCovid[this.dataCovid.length - 20].deaths; // MA
-    this.dataChart[12].value = this.dataCovid[this.dataCovid.length - 19].deaths; // MG
-    this.dataChart[10].value = this.dataCovid[this.dataCovid.length - 18].deaths; // MS
-    this.dataChart[11].value = this.dataCovid[this.dataCovid.length - 17].deaths; // MT
-    this.dataChart[13].value = this.dataCovid[this.dataCovid.length - 16].deaths; // PA
-    this.dataChart[14].value = this.dataCovid[this.dataCovid.length - 15].deaths; // PB
-    this.dataChart[16].value = this.dataCovid[this.dataCovid.length - 14].deaths; // PE
-    this.dataChart[17].value = this.dataCovid[this.dataCovid.length - 13].deaths; // PI
-    this.dataChart[15].value = this.dataCovid[this.dataCovid.length - 12].deaths; // PR
-    this.dataChart[18].value = this.dataCovid[this.dataCovid.length - 11].deaths; // RJ
-    this.dataChart[19].value = this.dataCovid[this.dataCovid.length - 10].deaths; // RN
-    this.dataChart[21].value = this.dataCovid[this.dataCovid.length - 9].deaths; // RO
-    this.dataChart[22].value = this.dataCovid[this.dataCovid.length - 8].deaths; // RR
-    this.dataChart[20].value = this.dataCovid[this.dataCovid.length - 7].deaths; // RS
-    this.dataChart[23].value = this.dataCovid[this.dataCovid.length - 6].deaths; // SC
-    this.dataChart[25].value = this.dataCovid[this.dataCovid.length - 5].deaths; // SE
-    this.dataChart[24].value = this.dataCovid[this.dataCovid.length - 4].deaths; // SP
-    this.dataChart[26].value = this.dataCovid[this.dataCovid.length - 3].deaths; // TO
-    // console.log(this.dataCovid[this.dataCovid.length - 2].deaths); Total deaths
+    this.dataChart.map((item, index)=>this.dataChart[index].value = 0) //zera todos os valores do dataChart
+    //inseri os valores determinantemente pelo estado
+    this.dataChart.map((itemChart, iChart)=>{
+      this.dataCovid.map((itemCovid, iCovid)=>{
+        if(itemChart.name === itemCovid.state) {
+          this.dataChart[iChart].value = this.dataCovid[iCovid].cases;
+        }
+      })
+    })
     this.chartMap(); // carrega o mapa
   }
 

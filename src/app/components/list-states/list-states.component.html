@@ -1,0 +1,21 @@
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Estado</th>
+            <th scope="col">Novos Obitos</th>
+            <th scope="col">Obitos</th>
+            <th scope="col">Vacinados</th>
+            <th scope="col">Recuperados</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of dataStates">
+            <td>{{data.state}}</td>
+            <td>{{data.new_deaths}}</td>
+            <td>{{data.deaths}}</td>
+            <td>{{data.vaccinated}}</td>
+            <td>{{data.recovered}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,4 +1,4 @@
-export interface ICovid {
+export interface ICovidState {
   date: string;
   country: string;
   state: string;
@@ -9,4 +9,5 @@ export interface ICovid {
   suspects: number;
   tests: number;
   vaccinated: number;
+  cases: number;
 }

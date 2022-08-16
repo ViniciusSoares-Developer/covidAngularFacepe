@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CovidService {
+export class CovidStatesService {
 
   private url = 'https://raw.githubusercontent.com/wcota/covid19br/master/cases-brazil-states.csv';
 
