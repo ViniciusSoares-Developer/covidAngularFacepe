@@ -1,24 +1,40 @@
+<hr>
 <div>
-  <table>
-    <thead>
-      <tr>
-        <th>Cidade</th>
-        <th>Novos obitos</th>
-        <th>Obitos</th>
-        <th>Casos</th>
-        <th>Novos casos</th>
-        <th>Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of dataCovid">
-        <td>{{ data.name }}</td>
-        <td>{{ data.new_deaths }}</td>
-        <td>{{ data.deaths }}</td>
-        <td>{{ data.total_cases }}</td>
-        <td>{{ data.new_cases }}</td>
-        <td>{{ data.date }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <h1>Covid hoje</h1>
+  <div class="select-container">
+    <select
+      #selectStatesForCities
+      [disabled]="!selectBool"
+      (change)="getCitiesPerStates(selectStatesForCities.value)"
+    >
+      <option value="" [disabled]="true">--Selecione o estado--</option>
+      <option *ngFor="let state of states" [value]="state.uf">
+        {{ state.nome }}
+      </option>
+    </select>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th class="sticky">Cidade</th>
+          <th>Novos obitos</th>
+          <th>Obitos</th>
+          <th>Casos</th>
+          <th>Novos casos</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cities of listCities">
+          <td class="sticky">{{ cities.name }}</td>
+          <td>{{ cities.new_deaths }}</td>
+          <td>{{ cities.deaths }}</td>
+          <td>{{ cities.total_cases }}</td>
+          <td>{{ cities.new_cases }}</td>
+          <td>{{ cities.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

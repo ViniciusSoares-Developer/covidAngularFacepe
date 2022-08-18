@@ -1,0 +1,80 @@
+.header-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0 0 1rem 0 black;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    color: blue;
+    select {
+        width: 100%;
+        padding: 0.3rem;
+        border-radius: 1rem;
+        text-align: center;
+        font-size: 1rem;
+    }
+    section {
+        width: 50%;
+    }
+}
+
+.footer-bar{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-top: 1rem solid blue;
+    img {
+        height: 5rem;
+    }
+}
+
+.flex-row-chart{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.covid {
+    width: 10%;
+    height: auto;
+    animation: covid 5s infinite;
+}
+
+@keyframes covid{
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@media screen  and (max-width: 767px) {
+    app-map, app-pie-chart-obito-recuperados{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    app-map, app-pie-chart-obito-recuperados{
+        width: 50%;
+    }
+}

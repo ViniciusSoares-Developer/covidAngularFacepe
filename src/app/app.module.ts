@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ListStatesComponent } from './components/list-states/list-states.component';
 import { MapComponent } from './components/map/map.component';
 import { ListCitiesComponent } from './components/list-cities/list-cities.component';
+import { PieChartObitoRecuperadosComponent } from './components/pie-chart-obito-recuperados/pie-chart-obito-recuperados.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ListCitiesComponent } from './components/list-cities/list-cities.compon
     HomeComponent,
     ListStatesComponent,
     ListCitiesComponent,
+    PieChartObitoRecuperadosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Verdana;
+}
+body {
+  overflow-x: hidden;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
+  thead {
+    color: white;
+    th {
+      position: sticky;
+      background-color: blue;
+      top: 0;
+      &.sticky {
+        left: 0;
+        z-index: 3;
+      }
+      z-index: 2;
+      padding: 1rem;
+    }
+  }
+  tbody {
+    color: black;
+    td {
+      &.sticky {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+      }
+      background-color: white;
+      z-index: 0;
+      padding: 0.1rem 0 0.1rem 0;
+    }
+  }
+  th,
+  td {
+    border: 0.1rem solid rgba(0, 0, 0, 0.466);
+  }
+}

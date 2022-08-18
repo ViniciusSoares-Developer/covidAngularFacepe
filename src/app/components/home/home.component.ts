@@ -8,7 +8,7 @@ import { CovidStatesService } from 'src/app/services/covidStates/covidStates.ser
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public dataCovid: Array<ICovidState> = [];
+  public dataCovidStates: Array<ICovidState> = [];
   public ChargeMap: boolean = false;
   public dataCovidPerDate: Array<ICovidState> = [];
   public datas: Array<string> = [];
@@ -19,21 +19,17 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.setData();
     setTimeout(() => {
-      this.getDatesCovid();
-      this.selectDate = this.datas[0];
-      this.filterDateCovid(this.selectDate);
       this.ChargeMap = true;
     }, 2000);
-
-    console.log(this.selectDate);
   }
 
   public setData(): void {
-    this.covidStatesService.getData().subscribe((data) => {
+    // Estados
+    this.covidStatesService.getData().subscribe((data: any) => {
       const list = data.split('\n');
       list.forEach((e: any) => {
         const items = e.split(',');
-        this.dataCovid.push({
+        this.dataCovidStates.push({
           date: items[1],
           country: items[2],
           state: items[3],
@@ -47,24 +43,29 @@ export class HomeComponent implements OnInit {
           cases: items[8],
         });
       });
+      this.getDatesCovid();
     });
   }
 
   public getDatesCovid(): void {
-    this.dataCovid.map((item) => {
+    this.dataCovidStates.map((item) => {
       this.datas.push(item.date);
     });
     this.datas = [...new Set(this.datas)];
     this.datas.sort((a, b) => b.localeCompare(a));
     this.datas.splice(0, 1);
+    this.selectDate = this.datas[0];
+    this.filterDateCovid(this.selectDate);
   }
 
-  public filterDateCovid(date: string) {
+  public filterDateCovid(date: any) {
+    this.ChargeMap = false;
     this.dataCovidPerDate = [];
-    this.dataCovid.map((item) => {
+    this.dataCovidStates.map((item) => {
       if (item.date === date) {
         this.dataCovidPerDate.push(item);
       }
     });
+    setTimeout(()=>this.ChargeMap = true, 1000)
   }
 }

@@ -1,0 +1,10 @@
+:host{
+    display: flex;
+    justify-content: center;
+}
+
+div{
+    width: 90%;
+    max-height: 400px;
+    overflow-y: scroll;
+}

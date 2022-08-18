@@ -43,7 +43,6 @@ export class ListStatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStatesData();
-    setInterval(()=>this.getStatesData(), 2000);
   }
 
   public getStatesData(): void {
