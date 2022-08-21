@@ -1,6 +1,6 @@
 <div class="header-bar">
   <section>
-    <h1>Covid</h1>
+    <h4>Covid</h4>
   </section>
   <section>
     <select [(ngModel)]="selectDate" (change)="filterDateCovid(selectDate)">
@@ -11,23 +11,22 @@
 <ng-template [ngIf]="!ChargeMap">
   <div class="loading">
     <img
-      class="covid"
       src="../../../assets/imgs/loading.png"
-      alt="Loading..."
+      alt="Carregando data..."
     />
     <br />
-    <p>Loading...</p>
+    <p>Carregando dados...</p>
   </div>
 </ng-template>
 <ng-template [ngIf]="ChargeMap">
   <div class="flex-row-chart">
-    <app-map [dataCovid]="dataCovidPerDate"></app-map>
+    <app-map [dataCovid]="dataCovidStatesPerDate"></app-map>
     <app-pie-chart-obito-recuperados
-      [dataCovid]="dataCovidPerDate"
+      [dataCovid]="dataCovidStatesPerDate"
     ></app-pie-chart-obito-recuperados>
-  </div>  
-  <app-list-states [dataCovid]="dataCovidPerDate"></app-list-states>
-  <app-list-cities></app-list-cities>
+  </div>
+  <app-list-states [dataCovid]="dataCovidStatesPerDate"></app-list-states>
+  <app-list-cities [dataCovid]="dataCovidCities"></app-list-cities>
 </ng-template>
 <div class="footer-bar">
   <img

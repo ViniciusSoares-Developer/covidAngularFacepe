@@ -4,24 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { ListStatesComponent } from './components/list-states/list-states.component';
-import { MapComponent } from './components/map/map.component';
-import { ListCitiesComponent } from './components/list-cities/list-cities.component';
-import { PieChartObitoRecuperadosComponent } from './components/pie-chart-obito-recuperados/pie-chart-obito-recuperados.component';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MapComponent,
     HomeComponent,
-    ListStatesComponent,
-    ListCitiesComponent,
-    PieChartObitoRecuperadosComponent,
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    HomeModule,
     FormsModule
   ],
   providers: [],

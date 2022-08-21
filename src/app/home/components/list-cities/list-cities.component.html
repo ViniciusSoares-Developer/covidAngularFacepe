@@ -1,0 +1,38 @@
+<div class="containerCities">
+  <h2>Covid hoje</h2>
+  <div class="select-container">
+    <select
+      #selectStatesForCities
+      (change)="getCitiesPerStates(selectStatesForCities.value)"
+    >
+      <option value="" [disabled]="true">--Selecione o estado--</option>
+      <option *ngFor="let state of states" [value]="state.uf">
+        {{ state.nome }}
+      </option>
+    </select>
+  </div>
+  <div class="table-container">
+    <table>
+        <thead>
+          <tr>
+            <th scope="col" class="sticky">Cidade</th>
+            <th scope="col">Novos obitos</th>
+            <th scope="col">Obitos</th>
+            <th scope="col">Casos</th>
+            <th scope="col">Novos casos</th>
+            <th scope="col">Data</th>
+          </tr>
+        </thead>
+        <tbody class="table-content">
+          <tr *ngFor="let cities of listCities">
+            <td class="sticky">{{ cities.name }}</td>
+            <td>{{ cities.new_deaths }}</td>
+            <td>{{ cities.deaths }}</td>
+            <td>{{ cities.total_cases }}</td>
+            <td>{{ cities.new_cases }}</td>
+            <td>{{ cities.date }}</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

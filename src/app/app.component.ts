@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<app-home></app-home>`
 })
-export class AppComponent {
-  title = 'covid-Facepe';
-}
+export class AppComponent {}

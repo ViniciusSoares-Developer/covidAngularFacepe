@@ -1,13 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICovidCities } from 'src/app/interfaces/iCovidCities';
-import { CovidCitiesService } from 'src/app/services/covidCities/covid-cities.service';
 
 @Component({
   selector: 'app-list-cities',
   templateUrl: './list-cities.component.html',
   styleUrls: ['./list-cities.component.scss']
 })
-export class ListCitiesComponent implements OnInit {
+export class ListCitiesComponent {
   @Input() dataCovid: Array<ICovidCities> = [];
   public listCities: Array<ICovidCities> = [];
   public states = [
@@ -39,34 +38,6 @@ export class ListCitiesComponent implements OnInit {
     { uf: 'SE', nome: 'Sergipe' },
     { uf: 'TO', nome: 'Tocantins' }
   ];
-  public selectBool: boolean = false;
-
-  constructor(private covidCitiesService: CovidCitiesService) { }
-
-  ngOnInit(): void {
-    this.setData();
-  }
-
-  public setData(): void{
-    this.covidCitiesService.getData().subscribe((data: any)=> {
-      const list = data.split('\n');
-      list.forEach((e: any)=> {
-        const items = e.split(',');
-        this.dataCovid.push({
-          uf: items[1],
-          name: items[2],
-          deaths: items[4],
-          new_deaths: items[12],
-          total_cases: items[5],
-          new_cases: items[11],
-          date: items[10]
-        })
-        this.dataCovid.sort((a,b)=>a.uf.localeCompare(b.uf))
-      })
-      this.dataCovid.splice(0,1)
-    })
-    this.selectBool = true;
-  }
 
   public getCitiesPerStates(state: string): void {
     this.listCities = [];

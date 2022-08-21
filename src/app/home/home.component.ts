@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ICovidCities } from 'src/app/interfaces/iCovidCities';
 import { ICovidState } from 'src/app/interfaces/iCovidState';
+import { CovidCitiesService } from 'src/app/services/covidCities/covid-cities.service';
 import { CovidStatesService } from 'src/app/services/covidStates/covidStates.service';
 
 @Component({
@@ -9,22 +11,25 @@ import { CovidStatesService } from 'src/app/services/covidStates/covidStates.ser
 })
 export class HomeComponent implements OnInit {
   public dataCovidStates: Array<ICovidState> = [];
+  public dataCovidStatesPerDate: Array<ICovidState> = [];
+  public dataCovidCities: Array<ICovidCities> = [];
+
   public ChargeMap: boolean = false;
-  public dataCovidPerDate: Array<ICovidState> = [];
   public datas: Array<string> = [];
   public selectDate?: string;
 
-  constructor(private covidStatesService: CovidStatesService) {}
+  constructor(private covidStatesService: CovidStatesService, private covidCitiesService: CovidCitiesService) {}
 
   ngOnInit(): void {
-    this.setData();
+    this.setDataStates();
+    this.setDataCities();
     setTimeout(() => {
       this.ChargeMap = true;
     }, 2000);
   }
 
-  public setData(): void {
-    // Estados
+  //estados
+  public setDataStates(): void {
     this.covidStatesService.getData().subscribe((data: any) => {
       const list = data.split('\n');
       list.forEach((e: any) => {
@@ -47,6 +52,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  //cidade
+  public setDataCities(): void{
+    this.covidCitiesService.getData().subscribe((data: any)=> {
+      const list = data.split('\n');
+      list.forEach((e: any)=> {
+        const items = e.split(',');
+        this.dataCovidCities.push({
+          uf: items[1],
+          name: items[2],
+          deaths: items[4],
+          new_deaths: items[12],
+          total_cases: items[5],
+          new_cases: items[11],
+          date: items[10]
+        })
+        this.dataCovidCities.sort((a,b)=>a.uf.localeCompare(b.uf))
+      })
+      this.dataCovidCities.splice(0,1)
+    })
+  }
+
   public getDatesCovid(): void {
     this.dataCovidStates.map((item) => {
       this.datas.push(item.date);
@@ -60,12 +86,12 @@ export class HomeComponent implements OnInit {
 
   public filterDateCovid(date: any) {
     this.ChargeMap = false;
-    this.dataCovidPerDate = [];
+    this.dataCovidStatesPerDate = [];
     this.dataCovidStates.map((item) => {
       if (item.date === date) {
-        this.dataCovidPerDate.push(item);
+        this.dataCovidStatesPerDate.push(item);
       }
     });
-    setTimeout(()=>this.ChargeMap = true, 1000)
+    setTimeout(()=>this.ChargeMap = true, 2000)
   }
 }
