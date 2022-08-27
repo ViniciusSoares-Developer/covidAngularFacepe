@@ -1,0 +1,47 @@
+<div class="containerCities">
+  <h2
+    [ngClass]="{
+      default: !selectStatesForCities.value,
+      red: selectStatesForCities.value && fullNewDeaths >= 50,
+      yellow: selectStatesForCities.value && fullNewDeaths >= 25,
+      green: selectStatesForCities.value && fullNewDeaths < 25
+    }"
+  >
+    Covid hoje
+  </h2>
+  <div class="select-container">
+    <select
+      #selectStatesForCities
+      (change)="getCitiesPerStates(selectStatesForCities.value)"
+    >
+      <option value="" [disabled]="true">--Selecione o estado--</option>
+      <option *ngFor="let state of states" [value]="state.uf">
+        {{ state.nome }}
+      </option>
+    </select>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" class="sticky">Cidade</th>
+          <th scope="col">Novos óbitos</th>
+          <th scope="col">Óbitos</th>
+          <th scope="col">Casos</th>
+          <th scope="col">Novos casos</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody class="table-content">
+        <tr *ngFor="let cities of listCities">
+          <td class="sticky">{{ cities.name }}</td>
+          <td>{{ numberFormat(cities.new_deaths) || 0 }}</td>
+          <td>{{ numberFormat(cities.deaths) || 0 }}</td>
+          <td>{{ numberFormat(cities.total_cases) || 0 }}</td>
+          <td>{{ numberFormat(cities.new_cases) || 0 }}</td>
+          <td>{{ cities.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

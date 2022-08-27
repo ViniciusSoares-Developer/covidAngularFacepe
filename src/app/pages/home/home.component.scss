@@ -1,0 +1,86 @@
+* {
+  cursor: default;
+  select,
+  input {
+    cursor: pointer;
+  }
+}
+
+.header-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0 0 1rem 0 black;
+  padding: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: darkblue;
+  select {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 1rem;
+    border: 0.1rem solid blue;
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+  }
+  section {
+    width: 50%;
+    min-width: 300px;
+  }
+}
+
+.flex-row-chart {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  img {
+    width: 10%;
+    height: auto;
+    animation: covid 2s infinite;
+  }
+}
+
+@keyframes covid {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 670px) {
+  app-map,
+  app-pie-chart-obito-recuperados {
+    width: 100%;
+  }
+  .header-bar {
+    section {
+      h4 {
+        margin-bottom: 1rem;
+      }
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+@media screen and (min-width: 670px) {
+  app-map,
+  app-pie-chart-obito-recuperados {
+    width: 50%;
+  }
+}

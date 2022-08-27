@@ -1,22 +1,16 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { HomeModule } from './home/home.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
-    HomeComponent,
     AppComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    HomeModule,
-    FormsModule
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

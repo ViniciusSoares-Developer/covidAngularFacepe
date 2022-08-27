@@ -1,0 +1,30 @@
+.footer-bar {
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  box-shadow: 0 0 1rem 0 black;
+  img {
+    height: 3rem;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+    border-radius: 1rem;
+    transition: 250ms padding;
+    &:hover{
+      background-color: black;
+      padding: 0 .5rem 0 .5rem ;
+      color: white;
+    }
+  }
+}
+.w-100 {
+  width: 100%;
+}
+.m-3 {
+  margin: 1.5rem;
+}

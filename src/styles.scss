@@ -4,6 +4,7 @@
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+  font-family: 'Cairo', sans-serif;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -51,14 +52,19 @@ h5{
 }
 
 .table-container {
-  max-height: 200px;
+  max-height: 300px;
   overflow: auto;
+  border-bottom: 2px solid rgb(7, 7, 153);
   table {
     width: 100%;
     text-align: center;
     .sticky {
       position: sticky;
       left: 0;
+    }
+    tbody>tr:hover {
+      background-color: rgb(201, 201, 201);
+      cursor: default;
     }
   }
   thead {
@@ -68,14 +74,13 @@ h5{
     z-index: 1;
     tr, th {
       padding: 1rem;
-      background-color: blue;
+      background-color: rgb(7, 7, 153);
     }
   }
   tbody {
     z-index: inherit;
     tr, td {
       padding: .5rem;
-      background-color: white;
     }
   }
 }

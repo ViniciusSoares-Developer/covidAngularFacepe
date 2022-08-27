@@ -1,0 +1,22 @@
+<div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th class="sticky" scope="col">Estado</th>
+          <th scope="col">Novos Óbitos</th>
+          <th scope="col">Óbitos</th>
+          <th scope="col">Vacinados</th>
+          <th scope="col">Recuperados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dataStates">
+          <td class="sticky">{{ data.state }}</td>
+          <td>{{ numberFormat(data.new_deaths) }}</td>
+          <td>{{ numberFormat(data.deaths) || 0 }}</td>
+          <td>{{ numberFormat(data.vaccinated) || 0 }}</td>
+          <td>{{ numberFormat(data.recovered) || 0 }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

@@ -1,0 +1,38 @@
+<!-- header -->
+<header class="header-bar">
+  <section>
+    <h4>Sars-Cov-2 <i class='fas fa-virus'></i></h4>
+  </section>
+  <section>
+    <select [(ngModel)]="selectDate" (change)="filterDateCovid(selectDate)">
+      <option *ngFor="let data of datas" [value]="data">{{ data }}</option>
+    </select>
+  </section>
+</header>
+
+<!-- Load screen -->
+<ng-template [ngIf]="!ChargeMap">
+  <div class="loading">
+    <img
+      src="../../../assets/imgs/loading.png"
+      alt="Carregando data..."
+    />
+    <br />
+    <p>Carregando dados...</p>
+  </div>
+</ng-template>
+
+<!-- Content Screen -->
+<ng-template [ngIf]="ChargeMap">
+  <div class="flex-row-chart">
+    <app-cards [data]="dataCovidStatesPerDate"></app-cards>
+    <app-map [dataCovid]="dataCovidStatesPerDate"></app-map>
+    <app-pie-chart-obito-recuperados
+      [dataCovid]="dataCovidStatesPerDate"
+    ></app-pie-chart-obito-recuperados>
+  </div>
+  <app-list-states [dataCovid]="dataCovidStatesPerDate"></app-list-states>
+  <app-list-cities [dataCovid]="dataCovidCities"></app-list-cities>
+</ng-template>
+
+<app-footer></app-footer>
