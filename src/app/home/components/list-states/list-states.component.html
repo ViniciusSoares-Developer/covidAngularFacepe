@@ -12,10 +12,10 @@
       <tbody>
         <tr *ngFor="let data of dataStates">
           <td class="sticky">{{ data.state }}</td>
-          <td>{{ data.new_deaths }}</td>
-          <td>{{ data.deaths }}</td>
-          <td>{{ data.vaccinated }}</td>
-          <td>{{ data.recovered }}</td>
+          <td>{{ numberFormat(data.new_deaths) }}</td>
+          <td>{{ numberFormat(data.deaths) || 0 }}</td>
+          <td>{{ numberFormat(data.vaccinated) || 0 }}</td>
+          <td>{{ numberFormat(data.recovered) || 0 }}</td>
         </tr>
       </tbody>
     </table>

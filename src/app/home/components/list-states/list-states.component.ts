@@ -39,8 +39,6 @@ export class ListStatesComponent implements OnInit {
     { uf: 'TO', state: 'Tocantins', new_deaths: 0, deaths: 0, vaccinated: 0, recovered: 0},
   ];
 
-  constructor() {}
-
   ngOnInit(): void {
     this.getStatesData();
   }
@@ -62,5 +60,9 @@ export class ListStatesComponent implements OnInit {
         }
       });
     });
+  }
+
+  public numberFormat(value: number): string {
+    return new Intl.NumberFormat('pt-BR').format(value);
   }
 }

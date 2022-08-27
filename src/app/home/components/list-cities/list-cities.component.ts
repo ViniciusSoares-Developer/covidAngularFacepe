@@ -47,4 +47,8 @@ export class ListCitiesComponent {
       }
     })
   }
+
+  public numberFormat(value: number): string {
+    return new Intl.NumberFormat('pt-BR').format(value);
+  }
 }

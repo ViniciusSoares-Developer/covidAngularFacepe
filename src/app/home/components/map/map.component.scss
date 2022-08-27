@@ -2,3 +2,9 @@ div {
   width: 100%;
   height: 40vw;
 }
+
+@media screen and (max-width: 500px){
+  div {
+    height: 80vw;
+  }
+}

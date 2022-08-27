@@ -26,10 +26,10 @@
         <tbody class="table-content">
           <tr *ngFor="let cities of listCities">
             <td class="sticky">{{ cities.name }}</td>
-            <td>{{ cities.new_deaths }}</td>
-            <td>{{ cities.deaths }}</td>
-            <td>{{ cities.total_cases }}</td>
-            <td>{{ cities.new_cases }}</td>
+            <td>{{ numberFormat(cities.new_deaths) || 0 }}</td>
+            <td>{{ numberFormat(cities.deaths) || 0 }}</td>
+            <td>{{ numberFormat(cities.total_cases) || 0 }}</td>
+            <td>{{ numberFormat(cities.new_cases) || 0 }}</td>
             <td>{{ cities.date }}</td>
           </tr>
         </tbody>

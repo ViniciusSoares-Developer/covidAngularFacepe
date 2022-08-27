@@ -45,7 +45,6 @@ export class PieChartObitoRecuperadosComponent implements OnInit {
       },
       series: [
         {
-          name: 'Grafic',
           type: 'pie',
           radius: '50%',
           data: this.dataChart,
@@ -63,15 +62,11 @@ export class PieChartObitoRecuperadosComponent implements OnInit {
     this.chart.setOption(option);
   }
 
-  //atualização dos dados utilizados
   public updateDataChart(): void {
-    // this.dataChart.map((item, index)=>this.dataChart[index].value = 0) //zera todos os valores do dataChart
-    // inseri os valores determinantemente pelo estado
     this.dataChart[0].value = this.dataCovid[this.dataCovid.length - 1].deaths
     this.dataChart[1].value = this.dataCovid[this.dataCovid.length - 1].recovered
-    console.log(this.dataCovid);
   }
-  
+
   public updateChartValues(): void {
     this.chart!.setOption({
       series: [
@@ -79,6 +74,6 @@ export class PieChartObitoRecuperadosComponent implements OnInit {
           data: this.dataChart,
         },
       ],
-    });    
+    });
   }
 }

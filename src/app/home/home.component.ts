@@ -23,9 +23,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.setDataStates();
     this.setDataCities();
-    setTimeout(() => {
-      this.ChargeMap = true;
-    }, 2000);
   }
 
   //estados

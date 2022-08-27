@@ -56,7 +56,6 @@ export class MapComponent implements OnInit {
     });
   }
 
-  //configurações do mapa
   private chartMap() {
     this.updateDataChart();
 
@@ -121,9 +120,7 @@ export class MapComponent implements OnInit {
     this.chart.setOption(option);
   }
 
-  //atualização dos dados utilizados
   public updateDataChart(): void {
-    // inseri os valores determinantemente pelo estado
     this.dataChart.map((itemChart, iChart) => {
       this.dataCovid.map((itemCovid, iCovid) => {
         if (itemChart.name === itemCovid.state) {
@@ -132,7 +129,7 @@ export class MapComponent implements OnInit {
       });
     });
   }
-  
+
   public updateChartValues(): void {
     this.chart!.setOption({
       series: [
@@ -140,6 +137,6 @@ export class MapComponent implements OnInit {
           data: this.dataChart,
         },
       ],
-    });    
+    });
   }
 }

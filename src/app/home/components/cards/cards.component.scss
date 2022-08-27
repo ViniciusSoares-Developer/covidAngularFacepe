@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.card-container {
+  margin: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: white;
+  width: 22%;
+  min-width: 250px;
+  .title-card {
+    padding: 1rem ;
+    font-size: 1.5rem;
+    border-bottom: 1px solid white;
+  }
+  .content-card {
+    padding: .5rem;
+  }
+}
