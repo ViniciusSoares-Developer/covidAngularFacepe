@@ -60,4 +60,9 @@ export class ListCitiesComponent {
   public numberFormat(value: number): string {
     return new Intl.NumberFormat('pt-BR').format(value);
   }
+
+  public dateFormatBR(date: any): string {
+    var arr = date.split('-');
+    return arr[2] + '/' + arr[1] + '/' + arr[0];
+  }
 }

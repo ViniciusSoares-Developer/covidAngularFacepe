@@ -59,7 +59,7 @@ export class ListStatesComponent implements OnInit {
         if (itemState.uf === itemCovid.state) {
           this.dataStates[iStates].new_deaths = this.dataCovid[iCovid].newDeaths;
           this.dataStates[iStates].deaths = this.dataCovid[iCovid].deaths;
-          this.dataStates[iStates].vaccinated = this.dataCovid[iCovid].vaccinated;
+          this.dataStates[iStates].vaccinated = this.dataCovid[iCovid].vaccinated_total;
           this.dataStates[iStates].recovered = this.dataCovid[iCovid].recovered;
         }
       });

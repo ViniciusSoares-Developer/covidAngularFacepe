@@ -49,9 +49,10 @@ export class HomeComponent implements OnInit {
           recovered: items[14],
           suspects: items[15],
           tests: items[16],
-          vaccinated: items[18],
-          vaccinated_first: items[20],
-          vaccinated_second: items[22],
+          vaccinated_total: Number(items[18]) + Number(items[20]) + Number(items[22]) + Number(items[24]),
+          vaccinated_single: items[22],
+          vaccinated_primary: items[18],
+          vaccinated_second: items[20],
           vaccinated_third: items[24],
           cases: items[8],
         });
@@ -84,7 +85,9 @@ export class HomeComponent implements OnInit {
   //coleta as datas que tem os dados do covid
   public getDatesCovid(): void {
     this.dataCovidStates.map((item) => {
-      this.datas.push(item.date);
+      if(item.date){
+        this.datas.push(item.date);
+      }
     });
     this.datas = [...new Set(this.datas)];
     this.datas.sort((a, b) => b.localeCompare(a));
@@ -102,6 +105,12 @@ export class HomeComponent implements OnInit {
         this.dataCovidStatesPerDate.push(item);
       }
     });
+    console.log(this.selectDate);
     setTimeout(() => (this.ChargeMap = true), 2000);
+  }
+
+  public dateFormatBR(date: any): string {
+    var arr = date.split('-');
+    return arr[2] + '/' + arr[1] + '/' + arr[0];
   }
 }

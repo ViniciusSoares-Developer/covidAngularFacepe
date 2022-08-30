@@ -9,7 +9,7 @@ import { FooterComponent } from './home/components/footer/footer.component';
 import { ListCitiesComponent } from './home/components/list-cities/list-cities.component';
 import { ListStatesComponent } from './home/components/list-states/list-states.component';
 import { MapComponent } from './home/components/map/map.component';
-import { PieChartObitoRecuperadosComponent } from './home/components/pie-chart-obito-recuperados/pie-chart-obito-recuperados.component';
+import { PieChartObito } from './home/components/pie-chart/pie-chart.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -19,8 +19,8 @@ import { HomeComponent } from './home/home.component';
     ListCitiesComponent,
     ListStatesComponent,
     MapComponent,
-    PieChartObitoRecuperadosComponent,
-    FooterComponent
+    FooterComponent,
+    PieChartObito
   ],
   imports: [
     CommonModule,

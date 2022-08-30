@@ -39,7 +39,7 @@
           <td>{{ numberFormat(cities.deaths) || 0 }}</td>
           <td>{{ numberFormat(cities.total_cases) || 0 }}</td>
           <td>{{ numberFormat(cities.new_cases) || 0 }}</td>
-          <td>{{ cities.date }}</td>
+          <td>{{ dateFormatBR(cities.date) }}</td>
         </tr>
       </tbody>
     </table>

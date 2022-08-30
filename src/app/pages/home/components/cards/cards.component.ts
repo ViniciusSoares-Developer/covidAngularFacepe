@@ -19,7 +19,7 @@ export class CardsComponent implements OnInit {
 
   ngOnInit(): void {
     //formata os numeros para o estilo brasileiro
-    this.cards[0].data = new Intl.NumberFormat('pt-BR').format(this.data[this.data.length - 1].vaccinated);
+    this.cards[0].data = new Intl.NumberFormat('pt-BR').format(this.data[this.data.length - 1].vaccinated_total);
     this.cards[1].data = new Intl.NumberFormat('pt-BR').format(this.data[this.data.length - 1].cases);
     this.cards[2].data = new Intl.NumberFormat('pt-BR').format(this.data[this.data.length - 1].deaths);
     this.cards[3].data = new Intl.NumberFormat('pt-BR').format(this.data[this.data.length - 1].recovered);

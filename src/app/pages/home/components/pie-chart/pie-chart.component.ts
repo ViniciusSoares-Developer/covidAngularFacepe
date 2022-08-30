@@ -5,16 +5,17 @@ import { ICovidState } from 'src/assets/interfaces/iCovidState';
 
 @Component({
   selector: 'app-pie-chart-obito-recuperados',
-  templateUrl: './pie-chart-obito-recuperados.component.html',
-  styleUrls: ['./pie-chart-obito-recuperados.component.scss'],
+  templateUrl: './pie-chart.component.html',
+  styleUrls: ['./pie-chart.component.scss'],
 })
-export class PieChartObitoRecuperadosComponent implements OnInit {
+export class PieChartObito implements OnInit {
   @Input() dataCovid: Array<ICovidState> = [];
   private chart: echarts.EChartsType | undefined;
   public dataChart = [
     { name: '1ª Dose', value: 0 },
     { name: '2ª Dose', value: 0 },
     { name: '3ª Dose', value: 0 },
+    { name: 'Dose única', value: 0 },
   ];
 
   constructor() {}
@@ -42,6 +43,8 @@ export class PieChartObitoRecuperadosComponent implements OnInit {
       title: {
         text: 'Dados de vacinação',
         left: 'center',
+        subtext: 'Data from WCota/covid19br',
+        sublink: 'https://github.com/wcota/covid19br',
       },
       tooltip: {
         trigger: 'item',
@@ -73,10 +76,12 @@ export class PieChartObitoRecuperadosComponent implements OnInit {
   //atualiza o data do chart
   public updateDataChart(): void {
     this.dataChart[0].value =
-      this.dataCovid[this.dataCovid.length - 1].vaccinated_first | 0;
+      this.dataCovid[this.dataCovid.length - 1].vaccinated_primary | 0;
     this.dataChart[1].value =
       this.dataCovid[this.dataCovid.length - 1].vaccinated_second | 0;
     this.dataChart[2].value =
       this.dataCovid[this.dataCovid.length - 1].vaccinated_third | 0;
+    this.dataChart[3].value =
+      this.dataCovid[this.dataCovid.length - 1].vaccinated_single | 0;
   }
 }

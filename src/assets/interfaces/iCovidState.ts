@@ -8,9 +8,10 @@ export interface ICovidState {
   recovered: number;
   suspects: number;
   tests: number;
-  vaccinated: number;
-  vaccinated_first: number;
+  vaccinated_total: number;
+  vaccinated_primary: number;
   vaccinated_second: number;
   vaccinated_third: number;
+  vaccinated_single: number;
   cases: number;
 }
