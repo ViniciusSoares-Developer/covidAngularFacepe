@@ -6,9 +6,8 @@
   }
 }
 
-.header-bar {
+header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
   box-shadow: 0 0 1rem 0 black;
@@ -68,7 +67,7 @@
   app-pie-chart-obito-recuperados {
     width: 100%;
   }
-  .header-bar {
+  header {
     section {
       h4 {
         margin-bottom: 1rem;

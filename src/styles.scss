@@ -58,11 +58,17 @@ h5{
   table {
     width: 100%;
     text-align: center;
+    td.sticky {
+      background-color: white;
+    }
     .sticky {
       position: sticky;
       left: 0;
     }
     tbody>tr:hover {
+      td {
+        background-color: rgb(201, 201, 201);
+      }
       background-color: rgb(201, 201, 201);
       cursor: default;
     }
