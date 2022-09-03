@@ -75,7 +75,7 @@ export class MapComponent implements OnInit {
     echarts.registerMap('BR', brazilJson);
     option = {
       title: {
-        text: 'Covid Brasil(Cases)',
+        text: 'Casos',
         subtext: 'Data from WCota/covid19br',
         sublink: 'https://github.com/wcota/covid19br',
         left: 'left',
@@ -86,11 +86,13 @@ export class MapComponent implements OnInit {
         min: 0,
         max: valueMax(),
         inRange: {
-          color: ['lightgreen', 'green', 'darkgreen'],
+          color: ['lightblue', 'blue', 'darkblue'],
         },
         text: ['Alto', 'Baixo'],
         calculable: true,
         realtime: true,
+        seriesIndex: 'all',
+        hoverLink: true,
       },
       toolbox: {
         show: true,
@@ -102,30 +104,35 @@ export class MapComponent implements OnInit {
           saveAsImage: {},
         },
       },
+      tooltip: {
+        trigger: 'item',
+        showDelay: 0,
+        transitionDuration: 0.2,
+      },
       series: [
         {
           name: 'BR Covid Analytics',
           type: 'map',
-          roam: true,
+          roam: 'move',
           map: 'BR',
-
           emphasis: {
             label: {
-              show: true,
-              backgroundColor: '#FFFFFF',
-              position: 'right',
-              borderWidth: 1,
-              borderColor: 'black',
-              borderType: 'solid',
-              color: 'black',
-              padding: 1,
+              show: false,
             },
+            itemStyle: {
+              areaColor: ''
+            }
           },
-          data: this.dataChart
+
+          data: this.dataChart,
+          select: {
+            itemStyle: {
+              color: '',
+            }
+          }
         },
       ],
     };
-
     this.chart.setOption(option);
   }
 

@@ -1,0 +1,58 @@
+:host{
+  header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 0 1rem 0 black;
+    padding: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: darkblue;
+
+    z-index: 999;
+    section {
+      width: auto;
+      min-width: 300px;
+      display: flex;
+      align-items: center;
+    }
+    ng-content {
+      width: 35%;
+    }
+    a{
+      margin: 0 1rem;
+      padding: 10px;
+
+      border: .2rem solid rgba(0, 0, 139, 0.5);
+      border-radius: 1rem;
+
+      text-decoration: none;
+
+      &:hover {
+        background-color: rgba(0, 0, 139, 0.5);
+        color: white;
+      }
+    }
+  }
+  .router-link-active {
+    color: white;
+    background-color: darkblue;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 670px){
+  header {
+    section {
+      h4 {
+        margin-bottom: 1rem;
+      }
+      justify-content: center;
+      text-align: center;
+      width: 100%!important;
+    }
+  }
+}

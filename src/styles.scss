@@ -15,6 +15,7 @@ footer, header, hgroup, menu, nav, section {
 html {
   overflow-x: hidden;
   font-family: sans-serif;
+  scroll-behavior: smooth;
 }
 body {
 	line-height: 1;
@@ -51,6 +52,10 @@ h5{
   font-size: 1rem!important;
 }
 
+select {
+  color: darkblue;
+}
+
 .table-container {
   max-height: 300px;
   overflow: auto;
@@ -85,8 +90,8 @@ h5{
   }
   tbody {
     z-index: inherit;
-    tr, td {
-      padding: .5rem;
+    td {
+      padding: 1rem 0;
     }
   }
 }

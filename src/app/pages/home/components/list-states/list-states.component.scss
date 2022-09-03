@@ -1,7 +1,12 @@
-table {
-  width: 100%;
-  text-align: center;
-  th{
-    padding: 10px;
+:host {
+  .table-container{
+    max-height: 600px;
+  }
+  table {
+    width: 100%;
+    text-align: center;
+    th {
+      padding: 10px;
+    }
   }
 }

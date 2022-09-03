@@ -1,0 +1,11 @@
+<header>
+  <section>
+    <h4>Sars-Cov-2 <i class='fas fa-virus'></i></h4>
+  </section>
+  <section>
+        <a [routerLink]="['/']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a [routerLink]="['/today']" routerLinkActive="router-link-active" >Hoje</a>
+        <a [routerLink]="['/informations']" routerLinkActive="router-link-active" >Informações</a>
+  </section>
+  <ng-content></ng-content>
+</header>

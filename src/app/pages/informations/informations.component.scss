@@ -1,0 +1,68 @@
+app-header{
+  section {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    ul {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      li {
+        margin: .3rem;
+      }
+      a {
+        color: darkblue;
+        text-decoration: none;
+        transition: all 250ms ;
+        border-radius: 1rem;
+        padding: .1rem .5rem;
+        &:hover {
+          color: white;
+          background-color: darkblue;
+        }
+      }
+    }
+  }
+}
+:host {
+  color: darkblue;
+  text-align: justify;
+  cursor: default;
+  h1, h2 {
+    margin-top: 2.5rem;
+
+    text-align: center;
+    color: white;
+    background-color: darkblue;
+  }
+  p {
+    margin-top: .1rem;
+    font-size: 18px;
+    padding: 0 5rem;
+  }
+  span {
+    margin-bottom: 100px;
+    font-size: 18px;
+  }
+  .list {
+    padding: 0 5rem;
+    font-size: 18px;
+    ul {
+      padding-left: 1.5rem;
+      list-style: disc;
+    }
+  }
+  h4 {
+    margin: 1rem 0 .3rem 0;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  app-header {
+    section {
+      margin-top: .25rem;
+      width: 100%;
+    }
+  }
+}

@@ -1,13 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ICovidCities } from 'src/assets/interfaces/iCovidCities';
+import { CovidCitiesService } from 'src/assets/services/covidCities/covid-cities.service';
 
 @Component({
-  selector: 'app-list-cities',
-  templateUrl: './list-cities.component.html',
-  styleUrls: ['./list-cities.component.scss']
+  selector: 'app-today',
+  templateUrl: './today.component.html',
+  styleUrls: ['./today.component.scss'],
 })
-export class ListCitiesComponent {
-  @Input() dataCovid: Array<ICovidCities> = [];
+export class TodayComponent implements OnInit {
+  public dataCovidCities: Array<ICovidCities> = [];
+  public dataChart: ICovidCities | undefined;
+  public openChart: boolean = false;
   public listCities: Array<ICovidCities> = [];
   public fullNewDeaths: number = 0;
   public states = [
@@ -40,11 +43,41 @@ export class ListCitiesComponent {
     { uf: 'TO', nome: 'Tocantins' }
   ];
 
+  public charge: boolean = false;
+
+  constructor(private covidCitiesService: CovidCitiesService) {}
+
+  ngOnInit(): void {
+    this.setDataCities();
+    setInterval(() => this.charge = true, 2000);
+  }
+
+  //coleta os dados da cidade cidade
+  public setDataCities(): void {
+    this.covidCitiesService.getData.subscribe((data: any) => {
+      const list = data.split('\n');
+      list.forEach((e: any) => {
+        const items = e.split(',');
+        this.dataCovidCities.push({
+          uf: items[1],
+          name: items[2],
+          deaths: items[4],
+          new_deaths: items[12],
+          total_cases: items[5],
+          new_cases: items[11],
+          date: items[10],
+        });
+      });
+      this.dataCovidCities.splice(0, 1);
+    });
+  }
+
   //pega as cidades apartir do estado selecionado
   public getCitiesPerStates(state: string): void {
-    //Limpa e depois re-insere os valores
     this.listCities = [];
-    this.dataCovid.map((item)=>{
+    this.charge = false;
+    //Limpa e depois re-insere os valores
+    this.dataCovidCities.map((item)=>{
       if(item.uf === state){
         this.listCities.push(item);
       }
@@ -54,6 +87,7 @@ export class ListCitiesComponent {
     this.listCities.map((item: ICovidCities) => {
       this.fullNewDeaths += Number(item.new_deaths);
     })
+    setInterval(()=>this.charge = true, 1000)
   }
 
   //formata os numeros para o estilo brasileiro
@@ -64,5 +98,11 @@ export class ListCitiesComponent {
   public dateFormatBR(date: any): string {
     var arr = date.split('-');
     return arr[2] + '/' + arr[1] + '/' + arr[0];
+  }
+
+  public setDataChart(value: ICovidCities): void {
+    this.openChart = false;
+    this.dataChart = value;
+    setTimeout(()=>this.openChart = true, 100);
   }
 }

@@ -6,15 +6,10 @@
   }
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  box-shadow: 0 0 1rem 0 black;
-  padding: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: darkblue;
+app-header {
+  section {
+    width: 35%;
+  }
   select {
     width: 100%;
     padding: 0.3rem;
@@ -23,10 +18,6 @@ header {
     outline: none;
     text-align: center;
     font-size: 1rem;
-  }
-  section {
-    width: 50%;
-    min-width: 300px;
   }
 }
 
@@ -49,11 +40,11 @@ header {
   img {
     width: 10%;
     height: auto;
-    animation: covid 2s infinite;
+    animation: loading 2s infinite;
   }
 }
 
-@keyframes covid {
+@keyframes loading {
   from {
     transform: rotate(0deg);
   }
@@ -67,12 +58,9 @@ header {
   app-pie-chart-obito-recuperados {
     width: 100%;
   }
-  header {
+  app-header {
     section {
-      h4 {
-        margin-bottom: 1rem;
-      }
-      text-align: center;
+      margin-top: 0.25rem;
       width: 100%;
     }
   }

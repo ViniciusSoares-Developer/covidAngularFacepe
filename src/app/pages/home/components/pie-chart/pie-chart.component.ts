@@ -41,33 +41,43 @@ export class PieChartObito implements OnInit {
 
     option = {
       title: {
-        text: 'Dados de vacinação',
-        left: 'center',
+        text: 'Vacinas',
         subtext: 'Data from WCota/covid19br',
         sublink: 'https://github.com/wcota/covid19br',
+        left: 'left',
+        bottom: 'top',
       },
+      color: ['lightblue', 'rgb(80, 80, 200)', 'rgb(0,0,180)', 'darkblue',],
       tooltip: {
-        trigger: 'item',
+        trigger: 'item'
       },
       legend: {
-        orient: 'vertical',
-        bottom: 'center',
-        left: 'left',
+        top: '5%',
+        left: 'center'
       },
       series: [
         {
+          name: 'Vacinas',
           type: 'pie',
-          radius: '50%',
-          data: this.dataChart,
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-            },
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center'
           },
-        },
-      ],
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '40',
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: this.dataChart
+        }
+      ]
     };
 
     this.chart.setOption(option);

@@ -1,0 +1,80 @@
+app-header {
+  section {
+    width: 35%;
+  }
+  select {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 1rem;
+    border: 0.1rem solid blue;
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+:host {
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    img {
+      width: 10%;
+      height: auto;
+      animation: loading 2s infinite;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-weight: bold;
+    transition: 500ms;
+    color: white;
+    -webkit-text-stroke: 0.1rem darkblue;
+    margin: 1rem 0;
+  }
+
+  .table-info {
+    cursor: pointer;
+    i {
+      color: darkblue;
+    }
+  }
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 670px) {
+  app-header {
+    section {
+      margin-top: .25rem;
+      width: 100%;
+    }
+  }
+}
+
+.containerCities {
+  min-height: 80vh;
+}
+.default {
+  text-decoration: none;
+}
+.red {
+  text-decoration: underline red;
+}
+.yellow {
+  text-decoration: underline orange;
+}
+.green {
+  text-decoration: underline green;
+}

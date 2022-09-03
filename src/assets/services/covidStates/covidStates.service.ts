@@ -11,7 +11,7 @@ export class CovidStatesService {
 
   constructor(private http: HttpClient) { }
 
-  public getData(): Observable<string> {
+  get getData(): Observable<string> {
     return this.http.get(this.url,{responseType: 'text'});
   }
 

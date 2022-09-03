@@ -1,0 +1,85 @@
+<app-header>
+  <section>
+    <select
+      #selectStatesForCities
+      (change)="getCitiesPerStates(selectStatesForCities.value)"
+    >
+      <option value="" [disabled]="true">--Selecione o estado--</option>
+      <option *ngFor="let state of states" [value]="state.uf">
+        {{ state.nome }}
+      </option>
+    </select>
+  </section>
+</app-header>
+
+<!-- Load screen -->
+<ng-template [ngIf]="!charge">
+  <div class="loading">
+    <img src="../../../assets/imgs/loading.png" alt="Carregando data..." />
+    <br />
+    <p>Carregando dados...</p>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="charge">
+  <div class="containerCities">
+    <h2
+      [ngClass]="{
+        default: !selectStatesForCities.value,
+        red: selectStatesForCities.value && fullNewDeaths >= 50,
+        yellow: selectStatesForCities.value && fullNewDeaths >= 25,
+        green: selectStatesForCities.value && fullNewDeaths < 25
+      }"
+    >
+      {{ dateFormatBR(dataCovidCities[1]!.date) }}
+    </h2>
+
+    <ng-template [ngIf]="openChart">
+      <app-bar-chart [data]="dataChart!"></app-bar-chart>
+    </ng-template>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Cidade</th>
+            <!-- <th scope="col">Novos óbitos</th>
+            <th scope="col">Óbitos</th>
+            <th scope="col">Casos</th>
+            <th scope="col">Novos casos</th> -->
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="table-content">
+          <tr *ngFor="let citie of listCities">
+            <td class="table-info" (click)="setDataChart(citie)"><i class="fas fa-eye"></i></td>
+            <td class="sticky">{{ citie.name }}</td>
+            <!-- <td>{{ numberFormat(citie.new_deaths) || 0 }}</td>
+            <td>{{ numberFormat(citie.deaths) || 0 }}</td>
+            <td>{{ numberFormat(citie.total_cases) || 0 }}</td>
+            <td>{{ numberFormat(citie.new_cases) || 0 }}</td> -->
+            <td>
+              <p *ngIf="citie.new_cases < 50 && citie.new_deaths == 0">
+                controlado
+              </p>
+              <p
+                *ngIf="
+                  citie.new_cases >= 50 &&
+                  citie.new_cases < 100 &&
+                  citie.new_deaths >= 0
+                "
+              >
+                moderado
+              </p>
+              <p *ngIf="citie.new_cases >= 100 || citie.new_deaths >= 5">
+                alerta
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>
+
+<app-footer></app-footer>

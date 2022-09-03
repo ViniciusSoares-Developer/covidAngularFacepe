@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 //Interfaces
-import { ICovidCities } from 'src/assets/interfaces/iCovidCities';
 import { ICovidState } from 'src/assets/interfaces/iCovidState';
 
 //Services
-import { CovidCitiesService } from 'src/assets/services/covidCities/covid-cities.service';
 import { CovidStatesService } from 'src/assets/services/covidStates/covidStates.service';
 
 @Component({
@@ -16,26 +14,21 @@ import { CovidStatesService } from 'src/assets/services/covidStates/covidStates.
 export class HomeComponent implements OnInit {
   public dataCovidStates: Array<ICovidState> = [];
   public dataCovidStatesPerDate: Array<ICovidState> = [];
-  public dataCovidCities: Array<ICovidCities> = [];
 
-  public ChargeMap: boolean = false;
+  public charge: boolean = false;
   public datas: Array<string> = [];
   public selectDate?: string;
 
-  constructor(
-    private covidStatesService: CovidStatesService,
-    private covidCitiesService: CovidCitiesService
-  ) {}
+  constructor(private covidStatesService: CovidStatesService) {}
 
   ngOnInit(): void {
     //inicializa a coleta dos dados
     this.setDataStates();
-    this.setDataCities();
   }
 
   //coleta os dados dos estados
   public setDataStates(): void {
-    this.covidStatesService.getData().subscribe((data: any) => {
+    this.covidStatesService.getData.subscribe((data: any) => {
       const list = data.split('\n');
       list.forEach((e: any) => {
         const items = e.split(',');
@@ -61,27 +54,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  //coleta os dados da cidade cidade
-  public setDataCities(): void {
-    this.covidCitiesService.getData().subscribe((data: any) => {
-      const list = data.split('\n');
-      list.forEach((e: any) => {
-        const items = e.split(',');
-        this.dataCovidCities.push({
-          uf: items[1],
-          name: items[2],
-          deaths: items[4],
-          new_deaths: items[12],
-          total_cases: items[5],
-          new_cases: items[11],
-          date: items[10],
-        });
-        this.dataCovidCities.sort((a, b) => a.uf.localeCompare(b.uf));
-      });
-      this.dataCovidCities.splice(0, 1);
-    });
-  }
-
   //coleta as datas que tem os dados do covid
   public getDatesCovid(): void {
     this.dataCovidStates.map((item) => {
@@ -98,7 +70,7 @@ export class HomeComponent implements OnInit {
 
   //filtra os dados apartir da data selecionada
   public filterDateCovid(date: any) {
-    this.ChargeMap = false;
+    this.charge = false;
     this.dataCovidStatesPerDate = [];
     this.dataCovidStates.map((item) => {
       if (item.date === date) {
@@ -106,7 +78,7 @@ export class HomeComponent implements OnInit {
       }
     });
     console.log(this.selectDate);
-    setTimeout(() => (this.ChargeMap = true), 2000);
+    setTimeout(() => (this.charge = true), 1000);
   }
 
   public dateFormatBR(date: any): string {
