@@ -15,6 +15,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { TodayComponent } from './today/today.component';
 import { BarChartComponent } from './today/components/bar-chart/bar-chart.component';
 import { InformationsComponent } from './informations/informations.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InformationsComponent } from './informations/informations.component';
     CommonModule,
     HttpClientModule,
     FormsModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    FontAwesomeModule
   ],
 })
 export class PagesModule { }

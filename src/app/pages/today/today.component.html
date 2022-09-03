@@ -43,21 +43,15 @@
           <tr>
             <th scope="col"></th>
             <th scope="col">Cidade</th>
-            <!-- <th scope="col">Novos óbitos</th>
-            <th scope="col">Óbitos</th>
-            <th scope="col">Casos</th>
-            <th scope="col">Novos casos</th> -->
             <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody class="table-content">
           <tr *ngFor="let citie of listCities">
-            <td class="table-info" (click)="setDataChart(citie)"><i class="fas fa-eye"></i></td>
+            <td class="table-info" (click)="setDataChart(citie)">
+              <fa-icon [icon]="faEye"></fa-icon>
+            </td>
             <td class="sticky">{{ citie.name }}</td>
-            <!-- <td>{{ numberFormat(citie.new_deaths) || 0 }}</td>
-            <td>{{ numberFormat(citie.deaths) || 0 }}</td>
-            <td>{{ numberFormat(citie.total_cases) || 0 }}</td>
-            <td>{{ numberFormat(citie.new_cases) || 0 }}</td> -->
             <td>
               <p *ngIf="citie.new_cases < 50 && citie.new_deaths == 0">
                 controlado

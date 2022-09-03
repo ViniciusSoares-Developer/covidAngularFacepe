@@ -1,4 +1,4 @@
 <div *ngFor="let card of cards" [style.background-color]="card.backgroundColor" class="card-container">
-  <section class="title-card"><span><i class="{{card.icon}}"></i> {{card.title}}</span></section>
+  <section class="title-card"><span><fa-icon [icon]="card.icon"></fa-icon> {{card.title}}</span></section>
   <section class="content-card">{{card.data}}</section>
 </div>

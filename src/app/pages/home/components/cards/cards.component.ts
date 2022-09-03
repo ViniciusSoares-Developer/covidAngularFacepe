@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faHeadSideMask, faHeartbeat, faLungsVirus, faSyringe } from '@fortawesome/free-solid-svg-icons';
 import { ICovidState } from 'src/assets/interfaces/iCovidState';
 
 @Component({
@@ -8,11 +10,11 @@ import { ICovidState } from 'src/assets/interfaces/iCovidState';
 })
 export class CardsComponent implements OnInit {
   @Input() data: Array<ICovidState> = [];
-  public cards: Array<{backgroundColor: string; icon: string; title: string; data: string}> = [
-    { backgroundColor: 'green', icon: 'fas fa-syringe', title: 'Total de vacinados', data: '0' },
-    { backgroundColor: 'orange', icon: 'fas fa-head-side-mask', title: 'Total de casos', data: '0' },
-    { backgroundColor: 'red', icon: 'fas fa-lungs-virus', title: 'Total de óbitos', data: '0' },
-    { backgroundColor: 'darkblue', icon: 'fas fa-heartbeat', title: 'Total de recuperados', data: '0' },
+  public cards: Array<{backgroundColor: string; icon: IconDefinition; title: string; data: string}> = [
+    { backgroundColor: 'green', icon: faSyringe, title: 'Total de vacinados', data: '0' },
+    { backgroundColor: 'orange', icon: faHeadSideMask, title: 'Total de casos', data: '0' },
+    { backgroundColor: 'red', icon: faLungsVirus, title: 'Total de óbitos', data: '0' },
+    { backgroundColor: 'darkblue', icon: faHeartbeat, title: 'Total de recuperados', data: '0' },
   ];
 
   constructor() { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { ICovidCities } from 'src/assets/interfaces/iCovidCities';
 import { CovidCitiesService } from 'src/assets/services/covidCities/covid-cities.service';
 
@@ -42,6 +43,8 @@ export class TodayComponent implements OnInit {
     { uf: 'SE', nome: 'Sergipe' },
     { uf: 'TO', nome: 'Tocantins' }
   ];
+
+  public faEye = faEye;
 
   public charge: boolean = false;
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faVirus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  public virus = faVirus;
 
   constructor() { }
 
