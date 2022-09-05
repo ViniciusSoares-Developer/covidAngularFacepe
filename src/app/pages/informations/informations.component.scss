@@ -10,13 +10,15 @@ app-header{
       width: 100%;
       li {
         margin: .3rem;
+        display: flex;
+        align-items: center;
       }
       a {
         color: darkblue;
         text-decoration: none;
         transition: all 250ms ;
-        border-radius: 1rem;
-        padding: .1rem .5rem;
+        border-radius: .5rem;
+        padding: .3rem .5rem;
         &:hover {
           color: white;
           background-color: darkblue;
@@ -29,6 +31,10 @@ app-header{
   color: darkblue;
   text-align: justify;
   cursor: default;
+  .fonte {
+    margin-top: 2rem;
+    text-align: center;
+  }
   h1, h2 {
     margin-top: 2.5rem;
 
@@ -42,7 +48,6 @@ app-header{
     padding: 0 5rem;
   }
   span {
-    margin-bottom: 100px;
     font-size: 18px;
   }
   .list {
